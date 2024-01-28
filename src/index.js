@@ -48,7 +48,7 @@ const defaultTheme = createTheme({
       default: '#f3eedc',
     },
     text: {
-      primary: 'rgba(60,60,62,0.77)',
+      primary: 'rgba(40,40,42,0.7)',
       secondary: 'rgba(40,40,42,0.7)',
     },
   },

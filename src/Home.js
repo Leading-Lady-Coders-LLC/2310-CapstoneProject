@@ -248,7 +248,8 @@ const Home = ({ user, logout, setUser }) => {
         orderId: lineItem?.order_id,
         lineItemId: lineItem?.id,
         id: product?.id,
-        vipPrice: product?.vip_price
+        vipPrice: product?.vip_price,
+        productImage: product?.product_image
       }
     })
     return cartProducts;

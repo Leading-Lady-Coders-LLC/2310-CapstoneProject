@@ -48,12 +48,12 @@ function Copyright(props) {
     };
 
     return (      
-      <Box component='main' sx={{ height: '100vh', backgroundColor: 'white'}} >
-      <Container maxWidth="xs" >
+      <Box component='main' sx={{ height: '100vh', backgroundColor: 'white', display: 'flex'}} >
+      <Container maxWidth='md' sx={{ flexGrow: 1 }}>
           
           <Box
               sx={{
-                  paddingTop: 8,
+                  padding: 16,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -141,6 +141,19 @@ function Copyright(props) {
           </Box>
           <Copyright sx={{ mt: 5 }} />
       </Container>
+      <Box
+        sx={{
+          flexGrow: 2,
+          backgroundImage: 'url(public/assets/login.png)',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: (t) =>
+            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+
+      </Box>
       </Box>
     )
 

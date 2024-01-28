@@ -50,7 +50,7 @@ const SignIn = ({ login }) => {
         md={7}
         sx={{
           // backgroundImage: 'url(https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FrZXx8fHx8fDE3MDUyODA0MTQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080)',
-          backgroundImage: 'url(public/assets/koala_login.jpg)',
+          backgroundImage: 'url(public/assets/koala_login2.jpg)',
           backgroundRepeat: 'no-repeat',
           backgroundColor: (t) =>
             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

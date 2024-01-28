@@ -32,7 +32,7 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
     const product = products?.find(product => product.id === lineItem.product_id);
     return {
       name: product?.name, description: product?.description, quantity: lineItem?.quantity, price: product?.price,
-      orderId: lineItem?.order_id, orderDate: getOrderDetails(lineItem?.order_id)?.created_at, id: product?.id
+      orderId: lineItem?.order_id, orderDate: getOrderDetails(lineItem?.order_id)?.created_at, id: product?.id, productImage: product?.product_image
     }
 
   });
@@ -64,7 +64,7 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
         <Badge badgeContent={`Qty:${product.quantity}`} sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.dark" } }} overlap='circular'>
           <CardMedia
             sx={{ p: "1rem", width: "200px", height: "200px", cursor: 'pointer' }}
-            image={`https://source.unsplash.com/random/?${product?.name}`}
+            image={product.productImage ?? `https://source.unsplash.com/random/?${product.name}`}
             component="img"
             onClick={() => { navigate(`/products/${product.id}`); }}
           />
