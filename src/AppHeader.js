@@ -1,18 +1,32 @@
-import { AppBar, Badge, Box, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
+import { AppBar, Badge, Box, Button, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import React from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import InfoIcon from '@mui/icons-material/Info';;
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 
 const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
   const navigate = useNavigate();
   return (
-    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, height: "5rem" }}>
+    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, height: "8rem" }}>
       <Toolbar>
+      <Button sx={{ display: 'flex', flexDirection: 'column' }}>       
+        <Box
+          // className='imageButton'
+          onClick={() => { navigate("/") }} 
+          component="img"
+          sx={{
+              height: "7.5rem"
+          }}
+          alt="graphic of a cake"
+          src="/public/assets/cake-icon-home.png"
+          >
+        </Box>
+      </Button>
+
         <Tooltip title="Home">
           <IconButton
             color="inherit"
@@ -28,15 +42,15 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
         <Box sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column' }}>
           <Typography
             component="h1"
-            variant="h3"
+            variant="h2"
             color="inherit"
             noWrap
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, fontSize: "5rem", mb: -1.5 }}
             align='center'
           >
             {`The Cake {Code}`}
           </Typography>
-          <Typography variant='subtitle1' marginLeft='60%'>take a byte</Typography>
+          <Typography variant='subtitle1' marginLeft='61%' sx={{ fontSize: "2rem", mt: -1.5 }}>take a byte</Typography>
         </Box>
         {isLoggedIn && (
           <>
@@ -47,14 +61,14 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
                 aria-label={"user profile"}
                 onClick={() => navigate("/user-profile_mui")}
               >
-                <AccountCircleIcon />
+                <AccountCircleIcon fontSize='large' />
               </IconButton>
             </Tooltip>
             {/* display cart */}
             <Tooltip title="Cart">
           <IconButton color="inherit" onClick={()=>{navigate("/cart")}}>
-          <Badge badgeContent={cartCount} color="secondary">
-            <ShoppingCartIcon />
+          <Badge badgeContent={cartCount} sx={{ "& .MuiBadge-badge": { backgroundColor: "accent.dark" } }}>
+            <ShoppingCartIcon fontSize='large' />
           </Badge>  
         </IconButton>
       </Tooltip>
@@ -66,14 +80,12 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
             aria-label={isLoggedIn ? "Logout" : "Login"}
             onClick={() => isLoggedIn ? logout() : navigate("/sign-in")}
           >
-            {isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
+            {isLoggedIn ? <LogoutIcon fontSize='large' /> : <LoginIcon fontSize='large' />}
           </IconButton>
         </Tooltip>  
 
       <IconButton color="inherit">
-        <Badge badgeContent={4} color="secondary">
-          <NotificationsIcon />
-        </Badge>
+        <InfoIcon fontSize='large' />
       </IconButton>
     </Toolbar>
         </AppBar >

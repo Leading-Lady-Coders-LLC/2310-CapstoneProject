@@ -71,7 +71,7 @@ const calculateLineItemTotal = (productPrice, vipPrice, quantity) => {
               <Badge
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 badgeContent={product.quantity}
-                color="secondary"
+                sx={{ "& .MuiBadge-badge": { backgroundColor: "accent.main" } }}
               >
                 <Avatar variant="square" src={`https://source.unsplash.com/random/?${product.name}`} alt={product.name}  sx={{ width: '5rem', height: '5rem' }}></Avatar>
               </Badge>

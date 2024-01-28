@@ -29,16 +29,67 @@ import UserProfileMUI from './UserProfileMUI';
 // https://www.svgrepo.com/svg/501915/dialog-box
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#ffc107'
-    },
-    secondary: {
-      main: '#ff9100'
-    },
-  },
-});
+// const defaultTheme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#ffc107'
+//     },
+//     secondary: {
+//       main: '#ff9100'
+//     },
+//   },
+// });
+
+// const defaultTheme = createTheme({
+//   palette: {
+//     mode: 'light',
+//     primary: {
+//       main: '#9ad8eb',
+//       contrastText: '#3d3d3d',
+//     },
+//     secondary: {
+//       main: '#efe19f',
+//     },
+//     accent: {
+//       main: '#fe85ae',
+//     },
+//     background: {
+//       default: '#f3eedc',
+//     },
+//     text: {
+//       primary: 'rgba(60,60,62,0.77)',
+//       secondary: 'rgba(40,40,42,0.7)',
+//     },
+//   },
+//   typography: {
+//     fontWeightLight: 200,
+//     fontFamily: 'Arial',
+//     h1: {
+//       fontFamily: 'Courier',
+//       fontWeight: 800,
+//     },
+//     h2: {
+//       fontFamily: 'Courier',
+//       fontWeight: 800,
+//     },
+//     h3: {
+//       fontFamily: 'Courier',
+//       fontWeight: 800,
+//     },
+//     h4: {
+//       fontFamily: 'Courier',
+//       fontWeight: 800,
+//     },
+//     h5: {
+//       fontFamily: 'Courier',
+//       fontWeight: 800,
+//     },
+//     h6: {
+//       fontFamily: 'Courier',
+//       fontWeight: 800,
+//     },
+//   },
+// });
 
 const Home = ({ user, logout, setUser }) => {
   const isLoggedIn = !!user?.id;
@@ -208,9 +259,9 @@ const Home = ({ user, logout, setUser }) => {
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <Box>
       <Box sx={{ display: 'flex', minHeight: "100vh" }}>
-        <CssBaseline />
+        
         <AppHeader isLoggedIn={isLoggedIn} logout={logout} cartCount={cartCount} />
         <AppSideMenu isAdmin={isAdmin} />
         <Box
@@ -227,7 +278,7 @@ const Home = ({ user, logout, setUser }) => {
           }}
         >
 
-          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="xl" sx={{ mt: 10, mb: 4 }}>
             <Routes>
               {/* display landing page as home page for all users */}
               <Route path="/" element={
@@ -338,7 +389,7 @@ const Home = ({ user, logout, setUser }) => {
                         isProductInWishlist={isProductInWishlist}
                       />
                     }
-                  /> */}
+                  />
                   <Route path="/:orderid/checkout" element={<Checkout getItemsInCart={getItemsInCart} placeOrder={placeOrder} isVip={isVip} user={user} />} />
                   {isAdmin && (
                     <>
@@ -367,7 +418,7 @@ const Home = ({ user, logout, setUser }) => {
         </Box>
       </Box>
       <AppFooter />
-    </ThemeProvider >
+    </Box >
   );
 }
 

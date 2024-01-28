@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { displayPrice } from './Util';
 import { Card, CardActions, CardContent, CardMedia, Container, Fab, IconButton, Tooltip, Typography, ImageList, ImageListItem, Snackbar, } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const WishlistMui = ({ wishlistItems, products, cartItems, getCartItem, createLineItem, updateLineItem, deleteWishlistItem }) => {
@@ -59,29 +59,26 @@ const WishlistMui = ({ wishlistItems, products, cartItems, getCartItem, createLi
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       // key={product.id}
       />
-      <ImageList>
-        <ImageListItem key="Subheader" cols={2}>
-          <ListSubheader sx={{ backgroundColor: "#ffc107" }} component="div">My Wishlist</ListSubheader>
-        </ImageListItem>
+      <ImageList cols={3}>
+        
         {wishlistProducts?.length ?
-          wishlistProducts.map((product, index) => (
-            <ImageListItem key={product.id}>
+          wishlistProducts.map((product) => (
+            <ImageListItem key={product.name}>
               <img
-                srcSet={`https://source.unsplash.com/random/?${product.name}[${index}]?w=248&fit=crop&auto=format&dpr=2 2x`}
-                src={`https://source.unsplash.com/random/?${product.name}[${index}]?w=248&fit=crop&auto=format`}
+                // srcSet={`https://source.unsplash.com/random/?${product.name}[${index}]?w=248&fit=crop&auto=format&dpr=2 2x`}
+                src={`${product.product_image}`}
                 alt={product.name}
                 loading="lazy"
               />
 
               <ImageListItemBar
-                sx={{ backgroundColor: "rgba(255,255,255,0.8)" }}
+                sx={{ backgroundColor: "rgba(255,255,255,0.8)", "& .MuiImageListItemBar-title": { color: "black" }, "& .MuiImageListItemBar-subtitle": { color: "black" } }}
                 title={product.name}
-                subtitle={product.description}
+                subtitle={product.category}
                 actionIcon={
                   <>
-
                     <Tooltip title="I changed my mind! Remove from Wishlist.">
-                      <IconButton size="small" sx={{ color: 'red' }} onClick={() => { handleDeleteWishlistItem(product) }}><FavoriteIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { handleDeleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
                     </Tooltip>
                     <Tooltip title="Add to cart!" >
                       <IconButton size="small" onClick={() => handleAddToCart(product)}><ShoppingCartIcon /></IconButton>

@@ -3,7 +3,8 @@ import SearchBar from './SearchBar';
 import { useNavigate } from "react-router-dom";
 import { Badge, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Container, IconButton, Tooltip, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import { displayPrice } from './Util';
 
 const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, updateLineItem, isProductInWishlist, createWishlistItem, deleteWishlistItem, isAdmin, customers }) => {
@@ -60,7 +61,7 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
     return (
       <Card key={`card-for-order-${product.orderId}-product-${product.id}`}
         sx={{ display: 'flex', mb: "1rem" }} variant='outlined'>
-        <Badge badgeContent={`Qty:${product.quantity}`} color='secondary' overlap='circular'>
+        <Badge badgeContent={`Qty:${product.quantity}`} sx={{ "& .MuiBadge-badge": { backgroundColor: "accent.dark" } }} overlap='circular'>
           <CardMedia
             sx={{ p: "1rem", width: "200px", height: "200px", cursor: 'pointer' }}
             image={`https://source.unsplash.com/random/?${product?.name}`}
@@ -83,11 +84,11 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
                 {
                   isProductInWishlist(product) ?
                     <Tooltip title="I changed my mind! Remove from Wishlist.">
-                      <IconButton size="small" sx={{ color: 'red' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
                     </Tooltip>
                     :
                     <Tooltip title="I want this cake someday! Add to Wishlist.">
-                      <IconButton size="small" onClick={() => { createWishlistItem(product) }}><FavoriteIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { createWishlistItem(product) }}><FavoriteBorderRoundedIcon /></IconButton>
                     </Tooltip>
                 }
                 <Tooltip title="Buy it again">
@@ -97,7 +98,7 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
                 </Tooltip>
               </CardActions>
               <Box sx={{ mt: "auto", alignSelf: "end" }}>
-                <Button sx={{ width: "fit-content", m: "auto" }} onClick={() => { navigate(`/products/${product.id}/review`) }}>Write a product review</Button>
+                <Button sx={{ width: "fit-content", m: "auto", color: "primary.dark" }} onClick={() => { navigate(`/products/${product.id}/review`) }}>Write a product review</Button>
               </Box>
             </>
           }
@@ -130,7 +131,7 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
     //for displaying app products under the order date heading - form the html elements
     const orderData = (
       <Card key={`card-for-order-${orderId}`} sx={{ mb: "1rem" }}>
-        <CardHeader sx={{ backgroundColor: "#ffc107" }} subheader={
+        <CardHeader sx={{ backgroundColor: "secondary.light" }} subheader={
           <Container sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Typography>Order placed on</Typography>
@@ -170,8 +171,7 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
 
   return (
     <Container maxWidth="xl">
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: "2rem 0" }}>
-        <Typography variant='h5'>Orders</Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: "0 0 2rem 0" }}>
         {
           hasOrders &&
           <SearchBar searchList={orderedProducts} onSearch={(results) => { setSearchResults(results) }} />

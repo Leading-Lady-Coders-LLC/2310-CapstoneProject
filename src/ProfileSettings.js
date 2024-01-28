@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import api from "./api";
-import { Box, Button, Divider, List, ListItem, ListItemButton, ListItemText, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Divider, Icon, List, ListItem, ListItemButton, ListItemIcon, ListItemText, TextField, Typography } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 import PasswordDialog from "./PasswordDialog";
 
 
@@ -9,16 +10,22 @@ const ProfileSettings = ({user, setUser}) => {
     const [firstName, setFirstName] = useState(user.firstname);
     const [lastName, setLastName] = useState(user.lastname);
     const [userName, setUserName] = useState(user.username);
-    const [addressLine1, setAddressLine1] = useState(user.address_line1);
+    const [addressLine1, setAddressLine1] = useState(user.address_line1 || '');
     const [addressLine2, setAddressLine2] = useState(user.address_line2 || '');
-    const [city, setCity] = useState(user.city);
-    const [state, setState] = useState(user.state);
-    const [zipCode, setZipCode] = useState(user.zip_code);
+    const [city, setCity] = useState(user.city || '');
+    const [state, setState] = useState(user.state || '');
+    const [zipCode, setZipCode] = useState(user.zip_code || '');
+    const [phone, setPhone] = useState(user.phone || '');
     const [displayField, setDisplayField] = useState(true);
     const [displayAddress, setDisplayAddress] = useState(true);
     const [showPasswordDialog, setShowPasswordDialog] = useState(false);
 
     const navigate = useNavigate();
+
+    const formatNumber = (phone) => {
+      const strPhone = phone.toString()
+      return `(${strPhone.slice(0, 3)})${strPhone.slice(3, 6)}-${strPhone.slice(6)}`
+    }
 
     const handleUserUpdate = async (event) => {
         event.preventDefault();
@@ -47,7 +54,8 @@ const ProfileSettings = ({user, setUser}) => {
           address_line2:addressLine2 ,
           city,
           state,
-          zip_code:zipCode
+          zip_code:zipCode,
+          phone
         }
 
         const changeAddress = async (updatedUserAddress,setUser)=>{
@@ -60,7 +68,7 @@ const ProfileSettings = ({user, setUser}) => {
 
       const profileUserInfo = () => {
         return (
-          <Box sx={{flexGrow: 1,p:"1rem"}}>
+          <Box sx={{ flexGrow: 1, p:"1rem" }}>
             <Typography variant="h5">
               Customer Information
             </Typography>
@@ -81,12 +89,22 @@ const ProfileSettings = ({user, setUser}) => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={`Currently a VIP member: ${user.is_vip}`} />
-                </ListItemButton>
+                {
+                  user.is_vip? (
+                    <ListItemButton>
+                      <StarIcon sx={{ color: 'accent3.main' }} />
+                      <ListItemText primary="Thank you for being a VIP member!" sx={{ textAlign: 'center' }} />
+                      <StarIcon sx={{ color: 'accent3.main' }} />
+                    </ListItemButton>
+                  ) : (
+                    <ListItemButton>
+                      <ListItemText primary="Please contact the store to become a VIP member." />
+                    </ListItemButton>
+                  )
+                }
               </ListItem>
               <Button variant="contained" onClick={()=>setDisplayField(false)}>Edit</Button>
-              <Button variant="text" sx={{fontWeight:700,float:"right"}} onClick={()=>{setShowPasswordDialog(true)}}>Change Password</Button>
+              <Button variant="text" sx={{fontWeight:700, float:"right", color: "primary.dark" }} onClick={()=>{setShowPasswordDialog(true)}}>Change Password</Button>
               <PasswordDialog open={showPasswordDialog} handleClose={()=>{setShowPasswordDialog(false)}} userId={user.id}/>
             </List>
           </Box>
@@ -95,7 +113,7 @@ const ProfileSettings = ({user, setUser}) => {
 
       const updateUserInfo = () => {
         return (
-          <Box sx={{flexGrow: 1,p:"1rem"}}>
+          <Box sx={{ flexGrow: 1, p:"1rem" }}>
             <Typography variant="h5">
               Edit Information
             </Typography>
@@ -144,31 +162,46 @@ const ProfileSettings = ({user, setUser}) => {
 
       const profileUserAddress = () => {
         return (
-          <Box sx={{flexGrow: 1,p:"1rem"}}>
+          <Box sx={{ flexGrow: 1, p:"1rem", maxWidth: "50%" }}>
             <Typography variant="h5">
-              Customer Address
+              Customer Address & Phone
             </Typography>
-            <List>
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={`${addressLine1}`} />
-                </ListItemButton>
-              </ListItem>
-              {
-                addressLine2 && (
+            {
+              addressLine1 && city && state && zipCode ? (
+                <List>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary={`${addressLine2}`} />
+                      <ListItemText primary={`${addressLine1}`} />
                     </ListItemButton>
                   </ListItem>
-                )
-              }
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={`${city}, ${state} ${zipCode}`} />
-                </ListItemButton>
-              </ListItem>
-            </List>
+                  {
+                    addressLine2 && (
+                      <ListItem disablePadding>
+                        <ListItemButton>
+                          <ListItemText primary={`${addressLine2}`} />
+                        </ListItemButton>
+                      </ListItem>
+                    )
+                  }
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary={`${city}, ${state} ${zipCode}`} />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary={`Phone: ${formatNumber(phone)}`} />
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              ) : (
+                <Card sx={{ mt: "1rem", mb: "1rem", p: "1rem" }} >
+                  <Typography>
+                    Address and/or phone are incomplete.  Please click EDIT to update.
+                  </Typography>
+                </Card>
+              )
+            }
             <Button variant="contained" onClick={()=>setDisplayAddress(false)}>Edit</Button>
           </Box>
         )
@@ -176,9 +209,9 @@ const ProfileSettings = ({user, setUser}) => {
 
       const updateUserAddress = () => {
         return (
-          <Box sx={{flexGrow: 1,p:"1rem"}}>
+          <Box sx={{ flexGrow: 1, p:"1rem" }}>
             <Typography variant="h5">
-              Edit Address
+              Edit Address & Phone
             </Typography>
             <Box component="form" onSubmit={handleAddressUpdate}>
               <TextField
@@ -234,10 +267,22 @@ const ProfileSettings = ({user, setUser}) => {
                 id="zipCode"
                 label="Zip Code (5 digits)"
                 autoComplete="none"
-                inputProps={{ pattern:'^(?:[0-9]{5})$',title:'Please enter a 5 digit zip code', minLength: 5, maxLength: 5 }}
+                inputProps={{ pattern:'^(?:[0-9]{5})$',title:'Please enter a 5 digit zip code' }}
                 value={zipCode}
                 autoFocus
                 onChange={(e)=>{setZipCode(e.target.value)}}
+                sx={{ m: 1 }}
+              />
+              <TextField
+                name="phone"
+                required
+                id="phone"
+                label="Phone Number"
+                autoComplete="none"
+                inputProps={{ pattern:'^(?:[0-9]{10})$',title:'Please enter a 10-digit phone number' }}
+                value={phone}
+                autoFocus
+                onChange={(e)=>{setPhone(e.target.value)}}
                 sx={{ m: 1 }}
               />
               <Button type="submit" variant="contained">Update</Button>
@@ -249,7 +294,7 @@ const ProfileSettings = ({user, setUser}) => {
 return (
     <Box sx={{ display: 'flex', p: 2, justifyContent: "space-evenly" }}>      
         {displayField ? profileUserInfo() : updateUserInfo()}
-      <Divider orientation="vertical" variant="middle" flexItem/>
+      <Divider orientation="vertical" variant="middle" flexItem />
         {displayAddress ? profileUserAddress() : updateUserAddress()}
     </Box>
 )

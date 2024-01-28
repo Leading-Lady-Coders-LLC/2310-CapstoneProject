@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import api from "./api";
 import { displayPrice } from "./Util";
 import { Card, Container, CardContent, CardMedia, Typography, Rating, Button, Box, CardActions, Tooltip, IconButton } from "@mui/material";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 
@@ -46,7 +46,7 @@ const ProductDetails = ({ products, cartItems, createLineItem, updateLineItem, i
   });
 
   //need cart item details for add to cart functionality - to check if item is already added to cart
-  const cartItem = cartItems.find(lineItem => lineItem.product_id === selectedProduct.id);
+  const cartItem = cartItems.find(lineItem => lineItem.product_id === selectedProduct?.id);
 
   return (
 
@@ -56,11 +56,11 @@ const ProductDetails = ({ products, cartItems, createLineItem, updateLineItem, i
           <Card sx={{ display: 'flex' }}>
             <CardMedia
               sx={{ p: "1rem", width: "300px", height: "300px" }}
-              image={`https://source.unsplash.com/random/?${selectedProduct?.name}`}
+              image={selectedProduct?.product_image}
               component="img"
             />
             <CardContent sx={{ display: "flex", flexDirection: "column", flexGrow: "1" }}>
-              <Typography gutterBottom variant="caption" component="span">
+              <Typography gutterBottom variant="h5" component="span">
                 {selectedProduct?.name}
               </Typography>
               <Typography variant="body1" color="text.secondary">
@@ -70,7 +70,7 @@ const ProductDetails = ({ products, cartItems, createLineItem, updateLineItem, i
                 {displayPrice.format(selectedProduct?.price)}
               </Typography>
               <Typography variant="caption" className="vipDiscount">
-                {selectedProduct?.vip_price ? `${displayPrice.format(selectedProduct?.vip_price)}  **VIP only discount!**` : ""}
+                {selectedProduct?.vip_price > 0 ? `${displayPrice.format(selectedProduct?.vip_price)}  **VIP only discount!**` : ""}
               </Typography>
 
               {isLoggedIn &&
@@ -79,11 +79,11 @@ const ProductDetails = ({ products, cartItems, createLineItem, updateLineItem, i
                     {
                       isProductInWishlist(selectedProduct) ?
                         <Tooltip title="I changed my mind! Remove from Wishlist.">
-                          <IconButton size="small" sx={{ color: 'red' }} onClick={() => { deleteWishlistItem(selectedProduct) }}><FavoriteIcon /></IconButton>
+                          <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { deleteWishlistItem(selectedProduct) }}><FavoriteRoundedIcon /></IconButton>
                         </Tooltip>
                         :
                         <Tooltip title="I want this cake someday! Add to Wishlist.">
-                          <IconButton size="small" onClick={() => { createWishlistItem(selectedProduct) }}><FavoriteIcon /></IconButton>
+                          <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { createWishlistItem(selectedProduct) }}><FavoriteBorderRoundedIcon /></IconButton>
                         </Tooltip>
                     }
 
@@ -104,7 +104,7 @@ const ProductDetails = ({ products, cartItems, createLineItem, updateLineItem, i
                     <Typography variant="h6" >Review this product
                     </Typography>
                     <Typography variant="body2">Share your thoughts with other customers</Typography>
-                    <Button sx={{ width: "fit-content", m: "auto" }} onClick={() => { navigate(`/products/${selectedProduct.id}/review`) }}>Write a product review</Button>
+                    <Button sx={{ width: "fit-content", m: "auto", color: "primary.dark" }} onClick={() => { navigate(`/products/${selectedProduct.id}/review`) }}>Write a product review</Button>
 
                   </Box>
                 </>
