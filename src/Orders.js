@@ -61,7 +61,7 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
     return (
       <Card key={`card-for-order-${product.orderId}-product-${product.id}`}
         sx={{ display: 'flex', mb: "1rem" }} variant='outlined'>
-        <Badge badgeContent={`Qty:${product.quantity}`} sx={{ "& .MuiBadge-badge": { backgroundColor: "accent.dark" } }} overlap='circular'>
+        <Badge badgeContent={`Qty:${product.quantity}`} sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.dark" } }} overlap='circular'>
           <CardMedia
             sx={{ p: "1rem", width: "200px", height: "200px", cursor: 'pointer' }}
             image={`https://source.unsplash.com/random/?${product?.name}`}
@@ -84,11 +84,11 @@ const Orders = ({ orders, products, lineItems, getCartItem, createLineItem, upda
                 {
                   isProductInWishlist(product) ?
                     <Tooltip title="I changed my mind! Remove from Wishlist.">
-                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
                     </Tooltip>
                     :
                     <Tooltip title="I want this cake someday! Add to Wishlist.">
-                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { createWishlistItem(product) }}><FavoriteBorderRoundedIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { createWishlistItem(product) }}><FavoriteBorderRoundedIcon /></IconButton>
                     </Tooltip>
                 }
                 <Tooltip title="Buy it again">

@@ -50,7 +50,7 @@ const SignIn = ({ login }) => {
         md={7}
         sx={{
           // backgroundImage: 'url(https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FrZXx8fHx8fDE3MDUyODA0MTQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080)',
-          backgroundImage: 'url(public/assets/Skittles.jpg)',
+          backgroundImage: 'url(public/assets/koala_login.jpg)',
           backgroundRepeat: 'no-repeat',
           backgroundColor: (t) =>
             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -58,7 +58,7 @@ const SignIn = ({ login }) => {
           backgroundPosition: 'center',
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} sx={{ backgroundColor: 'background.default' }} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
             my: 8,
@@ -80,7 +80,7 @@ const SignIn = ({ login }) => {
               required
               fullWidth
               id="username"
-              label="Username"
+              label="Username/Email"
               name="username"
               autoComplete="email"
               autoFocus

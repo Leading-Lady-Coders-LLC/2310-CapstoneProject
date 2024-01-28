@@ -13,32 +13,19 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, height: "8rem" }}>
       <Toolbar>
-      <Button sx={{ display: 'flex', flexDirection: 'column' }}>       
-        <Box
-          // className='imageButton'
-          onClick={() => { navigate("/") }} 
-          component="img"
-          sx={{
-              height: "7.5rem"
-          }}
-          alt="graphic of a cake"
-          src="/public/assets/cake-icon-home.png"
-          >
-        </Box>
-      </Button>
-
-        <Tooltip title="Home">
-          <IconButton
-            color="inherit"
-            aria-label="go home"
-            onClick={() => { navigate("/") }}
+        <Button sx={{ display: 'flex', flexDirection: 'column' }}>       
+          <Box
+            // className='imageButton'
+            onClick={() => { navigate("/") }} 
+            component="img"
             sx={{
-              marginRight: '36px',
+                height: "7.5rem"
             }}
-          >
-            <HomeIcon fontSize='large'/>
-          </IconButton>
-        </Tooltip>
+            alt="graphic of a cake"
+            src="/public/assets/cake-icon-home2.png"
+            >
+          </Box>
+        </Button>
         <Box sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column' }}>
           <Typography
             component="h1"
@@ -67,7 +54,7 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
             {/* display cart */}
             <Tooltip title="Cart">
           <IconButton color="inherit" onClick={()=>{navigate("/cart")}}>
-          <Badge badgeContent={cartCount} sx={{ "& .MuiBadge-badge": { backgroundColor: "accent.dark" } }}>
+          <Badge badgeContent={cartCount} sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.dark" } }}>
             <ShoppingCartIcon fontSize='large' />
           </Badge>  
         </IconButton>

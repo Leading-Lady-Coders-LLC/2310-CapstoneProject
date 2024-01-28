@@ -92,9 +92,9 @@ const ProfileSettings = ({user, setUser}) => {
                 {
                   user.is_vip? (
                     <ListItemButton>
-                      <StarIcon sx={{ color: 'accent3.main' }} />
+                      <StarIcon sx={{ color: 'accentYellow.main' }} />
                       <ListItemText primary="Thank you for being a VIP member!" sx={{ textAlign: 'center' }} />
-                      <StarIcon sx={{ color: 'accent3.main' }} />
+                      <StarIcon sx={{ color: 'accentYellow.main' }} />
                     </ListItemButton>
                   ) : (
                     <ListItemButton>

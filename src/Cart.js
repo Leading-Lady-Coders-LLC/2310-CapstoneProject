@@ -49,7 +49,7 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
                     <Badge
                       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                       badgeContent={product.quantity}
-                      sx={{ "& .MuiBadge-badge": { backgroundColor: "accent.main" } }}
+                      sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.main" } }}
                     >
                       <Avatar variant="square" src={`https://source.unsplash.com/random/?${product.name}`} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
                     </Badge>
@@ -83,9 +83,9 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
         }
         <ListItem sx={{ py: 1, px: "1rem" }}>
           {
-            ((isVip&&cartItemDetails?.length>0) && 
+            ((!isVip&&cartItemDetails?.length>0) && 
             <Card sx={{ mt: "1rem", p: "1rem" }} >
-              <Typography variant="body2" textAlign={"center"}>To avail VIP discount please contact the store.</Typography>
+              <Typography variant="body2" textAlign={"center"}>Make a purchase in-store to become a VIP member!</Typography>
             </Card>
             )
           }

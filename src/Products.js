@@ -49,11 +49,11 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
             onClick={() => { navigate(`/products/${product.id}`) }}
           />
           <CardContent>
-            <Typography gutterBottom variant="caption" component="span">
+            <Typography gutterBottom variant="body1" component="span" sx={{ fontWeight: 700, color: 'rgba(40,40,42, .85)' }}>
               {product.name}
             </Typography>
             <Typography 
-              variant="body1" 
+              variant="body2" 
               color="text.secondary"
               noWrap
             >
@@ -73,11 +73,11 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
                 {
                   isProductInWishlist(product) ?
                     <Tooltip title="I changed my mind! Remove from Wishlist.">
-                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
                     </Tooltip>
                     :
                     <Tooltip title="I want this cake someday! Add to Wishlist.">
-                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { createWishlistItem(product) }}><FavoriteBorderRoundedIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { createWishlistItem(product) }}><FavoriteBorderRoundedIcon /></IconButton>
                     </Tooltip>
                 }
 

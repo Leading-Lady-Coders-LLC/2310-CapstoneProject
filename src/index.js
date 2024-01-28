@@ -27,22 +27,23 @@ const defaultTheme = createTheme({
       dark: '#eadb99',
     },
     //purple
-    accent: {
+    accentPurple: {
       dark: '#c999ff',
       main: '#d3adff',
       light: '#e9d6ff',
     },
     //pink
-    accent2: {
+    accentPink: {
       dark: '#FE86AE',
       main: '#FEA0C0',
       light: '#FEC2D6',
       darkest: '#fd5d93'
     },
     //yellow
-    accent3: {
+    accentYellow: {
       main: 'eeee73',
     },
+    //very light cream
     background: {
       default: '#f3eedc',
     },

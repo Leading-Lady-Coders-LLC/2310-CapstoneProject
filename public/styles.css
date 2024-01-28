@@ -11,11 +11,6 @@ form > * {
   margin: 0.5rem;
 }
 
-.imageButton{
-  height: 5rem;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
-}
-
 .navbar{
   display: flex;
   gap:1em;

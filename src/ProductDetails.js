@@ -79,11 +79,11 @@ const ProductDetails = ({ products, cartItems, createLineItem, updateLineItem, i
                     {
                       isProductInWishlist(selectedProduct) ?
                         <Tooltip title="I changed my mind! Remove from Wishlist.">
-                          <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { deleteWishlistItem(selectedProduct) }}><FavoriteRoundedIcon /></IconButton>
+                          <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { deleteWishlistItem(selectedProduct) }}><FavoriteRoundedIcon /></IconButton>
                         </Tooltip>
                         :
                         <Tooltip title="I want this cake someday! Add to Wishlist.">
-                          <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { createWishlistItem(selectedProduct) }}><FavoriteBorderRoundedIcon /></IconButton>
+                          <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { createWishlistItem(selectedProduct) }}><FavoriteBorderRoundedIcon /></IconButton>
                         </Tooltip>
                     }
 

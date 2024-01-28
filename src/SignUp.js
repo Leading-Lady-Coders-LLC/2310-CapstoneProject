@@ -48,11 +48,12 @@ function Copyright(props) {
     };
 
     return (      
-      <Container component="main" maxWidth="xs">
-          <CssBaseline />
+      <Box component='main' sx={{ height: '100vh', backgroundColor: 'white'}} >
+      <Container maxWidth="xs" >
+          
           <Box
               sx={{
-                  marginTop: 8,
+                  paddingTop: 8,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -140,6 +141,7 @@ function Copyright(props) {
           </Box>
           <Copyright sx={{ mt: 5 }} />
       </Container>
+      </Box>
     )
 
   }

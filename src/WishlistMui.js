@@ -78,7 +78,7 @@ const WishlistMui = ({ wishlistItems, products, cartItems, getCartItem, createLi
                 actionIcon={
                   <>
                     <Tooltip title="I changed my mind! Remove from Wishlist.">
-                      <IconButton size="small" sx={{ color: 'accent2.dark' }} onClick={() => { handleDeleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { handleDeleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
                     </Tooltip>
                     <Tooltip title="Add to cart!" >
                       <IconButton size="small" onClick={() => handleAddToCart(product)}><ShoppingCartIcon /></IconButton>
