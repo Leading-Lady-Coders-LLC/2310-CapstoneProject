@@ -90,6 +90,7 @@ const SignIn = ({ login }) => {
                 name="username"
                 autoComplete="email"
                 autoFocus
+                inputProps={{ minLength:3, maxLength:15}}
               />
               <TextField
                 margin="normal"
@@ -100,6 +101,7 @@ const SignIn = ({ login }) => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                inputProps={{ minLength: 4, maxLength: 25 }}
               />
               { error && <Box variant='h3' sx={{color: 'red'}}>{error}</Box>}
               {/* <FormControlLabel
