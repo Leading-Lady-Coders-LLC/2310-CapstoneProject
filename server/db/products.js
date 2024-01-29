@@ -24,6 +24,7 @@ const createProduct = async(product)=> {
 };
 //declared updateProduct SQL... exported
 const updateProduct = async(product)=> {
+  console.log("SQL UPDATE" ,product)
   const SQL = `
     UPDATE products 
     SET  name = $1,

@@ -21,7 +21,8 @@ import Orders from './Orders';
 import ThankYou from './ThankYou';
 import Checkout from './Checkout';
 import UserProfileMUI from './UserProfileMUI';
-
+import AboutMe from './AboutMe';
+import Contact from './Contact';
 
 // https://www.svgrepo.com/svg/419438/baked-cake-cup
 // https://www.svgrepo.com/svg/404839/birthday-cake
@@ -234,8 +235,10 @@ const Home = ({ user, logout, setUser }) => {
                 <>
                   <FeaturedProducts />
                   <FrequentlyBought />
+                  
                 </>
               }></Route>
+             <Route path="/aboutme" element={<AboutMe/>}/>
               {/* display products and product details for all users */}
               <Route
                 path="/products"
@@ -338,8 +341,10 @@ const Home = ({ user, logout, setUser }) => {
                         isProductInWishlist={isProductInWishlist}
                       />
                     }
-                  /> */}
+                  />
                   <Route path="/:orderid/checkout" element={<Checkout getItemsInCart={getItemsInCart} placeOrder={placeOrder} isVip={isVip} />} />
+                  <Route path="/contact" element={<Contact user={user}/>}/>
+                  
                   {isAdmin && (
                     <>
                       <Route path='/orders-admin' element={<Orders orders={allOrders}
@@ -356,8 +361,11 @@ const Home = ({ user, logout, setUser }) => {
                       />} />
                       <Route path="/add-product" element={<AddOrEditAProduct products={products} setProducts={setProducts} />} />
                       <Route path="/customers" element={<AllCustomers customers={customers} setCustomers={setCustomers} />} />
+                     
+                      
                     </>
                   )}
+
 
                 </>
               }

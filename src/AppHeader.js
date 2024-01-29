@@ -6,9 +6,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import { useNavigate } from 'react-router-dom';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
-const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
+
+
+const AppHeader = ({ isLoggedIn, logout ,cartCount,}) => {
   const navigate = useNavigate();
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, height: "5rem" }}>
@@ -58,9 +62,36 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
           </Badge>  
         </IconButton>
       </Tooltip>
-          </>
+         
+{/* display Contact */}
+          <Tooltip title={"ContactMe"}>
+              <IconButton
+                color="inherit"
+                aria-label={"Contact Me"}
+                onClick={() => navigate("/contact")}
+              >
+                <ContactPhoneIcon />
+              </IconButton>
+            </Tooltip>
+
+ </>
         )}
-        <Tooltip title={isLoggedIn ? "Logout" : "Login"}>
+     
+
+          
+
+        {/* display About Me */}
+         <Tooltip title={"AboutMe"}>
+              <IconButton
+                color="inherit"
+                aria-label={"About Me"}
+                onClick={() => navigate("/aboutme")}
+              >
+                <InfoRoundedIcon />
+              </IconButton>
+            </Tooltip>
+
+   <Tooltip title={isLoggedIn ? "Logout" : "Login"}>
           <IconButton
             color="inherit"
             aria-label={isLoggedIn ? "Logout" : "Login"}
@@ -69,12 +100,12 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
             {isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
           </IconButton>
         </Tooltip>  
-
-      <IconButton color="inherit">
+        
+      {/* <IconButton color="inherit">
         <Badge badgeContent={4} color="secondary">
           <NotificationsIcon />
         </Badge>
-      </IconButton>
+      </IconButton> */}
     </Toolbar>
         </AppBar >
   )
