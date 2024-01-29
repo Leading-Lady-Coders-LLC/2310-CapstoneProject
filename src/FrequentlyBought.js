@@ -14,13 +14,14 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, Typo
 function FrequentlyBought({ products }) {
 
   const images = [
+    "Koala Cake",
     "Cookie Explosion",
     "Woodland Fairy Cake",
     "Mother's Day Bouquet",
-    "Mountain View Cake",
-    "Cookies and Cream Delight",
     "Skittle Surprise",
-    "Unicorn Cake"
+    "Mountain View Cake",
+    "Oreo Delight",    
+    "Unicorn Cake",    
   ];
 
   const favoriteProducts = products?.filter((product) => {

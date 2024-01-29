@@ -80,7 +80,7 @@ const defaultTheme = createTheme({
       fontWeight: 800,
     },
     body1: {
-      fontWeight: 600
+      fontWeight: 550
     },
     body2: {
       fontWeight: 500
