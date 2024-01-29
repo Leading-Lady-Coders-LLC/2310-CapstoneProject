@@ -47,6 +47,7 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
             image={product.product_image ?? `https://source.unsplash.com/random/?${product.name}[${index}]`}
             title={"Click to view details"}
             onClick={() => { navigate(`/products/${product.id}`) }}
+            loading='lazy'
           />
           <CardContent>
             <Typography gutterBottom variant="body1" component="span" sx={{ fontWeight: 700, color: 'rgba(40,40,42, .85)' }}>
@@ -54,12 +55,11 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
             </Typography>
             <Typography 
               variant="body2" 
-              color="text.secondary"
               noWrap
             >
               {product.description}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2">
               {displayPrice.format(product.price)}
             </Typography>
             <Typography variant="caption" className="vipDiscount">

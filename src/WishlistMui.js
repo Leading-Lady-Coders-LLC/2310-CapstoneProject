@@ -23,6 +23,8 @@ const WishlistMui = ({ wishlistItems, products, cartItems, getCartItem, createLi
     return productIdArray.includes(product.id)
   })
 
+  console.log(wishlistProducts)
+
   const handleAddToCart = (product) => {
     const cartItem = getCartItem(product.id);
     //add item to cart

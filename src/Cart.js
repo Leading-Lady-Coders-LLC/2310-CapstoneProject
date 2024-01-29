@@ -55,7 +55,7 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
                       <Avatar variant="square" src={product.productImage} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
                     </Badge>
                   </ListItemAvatar>
-                  <ListItemText primary={product.name} secondary={
+                  <ListItemText sx={{ fontWeight: 600 }} primary={product.name} secondary={
                     <>
                       <Typography > {product.price}</Typography>
                       <Typography variant="caption" className="vipDiscount">

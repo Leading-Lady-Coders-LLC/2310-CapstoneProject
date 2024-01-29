@@ -42,23 +42,22 @@ const SignIn = ({ login }) => {
   };
 
   return (    
-    <Grid container component="main" sx={{ height: '100vh' }}>      
+    <Grid container component="main" sx={{ height: '100vh', display: 'flex' }}>      
       <Grid
         item
-        xs={false}
-        sm={4}
-        md={7}
-        sx={{
-          // backgroundImage: 'url(https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FrZXx8fHx8fDE3MDUyODA0MTQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080)',
-          backgroundImage: 'url(public/assets/koala_login2.jpg)',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        xs="auto"
+      >
+        <Box
+            component="img"
+            sx={{
+                height: '100vh',
+            }}
+            alt="graphic of a koala cake"
+            src="/public/assets/koala_login2.jpg"
+        >
+        </Box>
+      </Grid>
+      <Grid item component={Paper} elevation={6} sx={{ flexGrow: 1 }} square>
         <Box
           sx={{
             my: 8,

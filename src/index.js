@@ -48,7 +48,7 @@ const defaultTheme = createTheme({
       default: '#f3eedc',
     },
     text: {
-      primary: 'rgba(40,40,42,0.7)',
+      primary: 'rgba(20,20,20,1)',
       secondary: 'rgba(40,40,42,0.7)',
     },
   },
@@ -79,6 +79,12 @@ const defaultTheme = createTheme({
       fontFamily: 'Courier',
       fontWeight: 800,
     },
+    body1: {
+      fontWeight: 600
+    },
+    body2: {
+      fontWeight: 500
+    }
   },
 });
 
