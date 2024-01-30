@@ -65,7 +65,7 @@ export default function Checkout({ getItemsInCart, placeOrder, isVip, user}) {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+          {`The Cake {Code}`}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -97,7 +97,7 @@ export default function Checkout({ getItemsInCart, placeOrder, isVip, user}) {
               {getStepContent(activeStep, orderDetails, placeOrder, isVip, user)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1, color: "primary.dark" }}>
                     Back
                   </Button>
                 )}

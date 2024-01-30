@@ -1,6 +1,6 @@
 import React from 'react';
 import { displayPrice } from './Util';
-import { Avatar, Badge, Button, Card, IconButton, List, ListItem, ListItemAvatar, ListItemText, Tooltip, Typography } from '@mui/material';
+import { Avatar, Badge, Button, Card, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Tooltip, Typography, autocompleteClasses } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -34,27 +34,28 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
  
   return (
     <>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h5" gutterBottom sx={{ml: '12.5%'}}>
         Order summary
       </Typography>
-      <List >
+      <List sx={{ maxWidth: '75%', ml: 'auto', mr: 'auto' }}>
         {cartItemDetails?.length ?
           cartItemDetails?.map((product) => {
             const currentLineItem = lineItems.find((lineItem) => { return lineItem.id === product.lineItemId })
             const isLastItemInCart = currentLineItem.quantity <= 1;
             return (
               <>
+              
                 <ListItem key={product.name} sx={{ py: 1, px: "1rem" }}>
                   <ListItemAvatar sx={{ mr: '1rem' }}>
                     <Badge
                       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                       badgeContent={product.quantity}
-                      color="secondary"
+                      sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.main" } }}
                     >
-                      <Avatar variant="square" src={`https://source.unsplash.com/random/?${product.name}`} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
+                      <Avatar variant="square" src={product.productImage} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
                     </Badge>
                   </ListItemAvatar>
-                  <ListItemText primary={product.name} secondary={
+                  <ListItemText sx={{ fontWeight: 600 }} primary={product.name} secondary={
                     <>
                       <Typography > {product.price}</Typography>
                       <Typography variant="caption" className="vipDiscount">
@@ -73,6 +74,7 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
                     </>} />
                   <Typography variant="body2"> Total: {displayPrice.format(calculateLineItemTotal(product.price, product.vipPrice, product.quantity))}</Typography>
                 </ListItem>
+                <Divider variant="middle" component="li" />
               </>
             )
           })
@@ -83,9 +85,9 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
         }
         <ListItem sx={{ py: 1, px: "1rem" }}>
           {
-            ((isVip&&cartItemDetails?.length>0) && 
+            ((!isVip&&cartItemDetails?.length>0) && 
             <Card sx={{ mt: "1rem", p: "1rem" }} >
-              <Typography variant="body2" textAlign={"center"}>To avail VIP discount please contact the store.</Typography>
+              <Typography variant="body2" textAlign={"center"}>Make a purchase in-store to become a VIP member!</Typography>
             </Card>
             )
           }
@@ -95,7 +97,7 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
           </Typography>
         </ListItem>
       </List >
-      <Button onClick={handleCheckout} variant='contained' sx={{ float: "right", px: "1rem", mb: "1rem", fontWeight: "700" }}>Checkout</Button>
+      <Button onClick={handleCheckout} variant='contained' sx={{ float: "right", px: "1rem", mb: "1rem", mt: "1rem", mr: "13%", fontWeight: "700" }}>Checkout</Button>
     </>
   );
 };

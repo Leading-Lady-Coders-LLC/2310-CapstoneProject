@@ -22,24 +22,6 @@ import ThankYou from './ThankYou';
 import Checkout from './Checkout';
 import UserProfileMUI from './UserProfileMUI';
 
-
-// https://www.svgrepo.com/svg/419438/baked-cake-cup
-// https://www.svgrepo.com/svg/404839/birthday-cake
-// https://www.svgrepo.com/svg/501917/cake
-// https://www.svgrepo.com/svg/501915/dialog-box
-
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#ffc107'
-    },
-    secondary: {
-      main: '#ff9100'
-    },
-  },
-});
-
 const Home = ({ user, logout, setUser }) => {
   const isLoggedIn = !!user?.id;
   const isAdmin = user?.is_admin;
@@ -197,7 +179,8 @@ const Home = ({ user, logout, setUser }) => {
         orderId: lineItem?.order_id,
         lineItemId: lineItem?.id,
         id: product?.id,
-        vipPrice: product?.vip_price
+        vipPrice: product?.vip_price,
+        productImage: product?.product_image
       }
     })
     return cartProducts;
@@ -208,9 +191,9 @@ const Home = ({ user, logout, setUser }) => {
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <Box>
       <Box sx={{ display: 'flex', minHeight: "100vh" }}>
-        <CssBaseline />
+        
         <AppHeader isLoggedIn={isLoggedIn} logout={logout} cartCount={cartCount} />
         <AppSideMenu isAdmin={isAdmin} />
         <Box
@@ -227,13 +210,13 @@ const Home = ({ user, logout, setUser }) => {
           }}
         >
 
-          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="xl" sx={{ mt: 10, mb: 4 }}>
             <Routes>
               {/* display landing page as home page for all users */}
               <Route path="/" element={
                 <>
                   <FeaturedProducts />
-                  <FrequentlyBought />
+                  <FrequentlyBought products={products} />
                 </>
               }></Route>
               {/* display products and product details for all users */}
@@ -338,7 +321,7 @@ const Home = ({ user, logout, setUser }) => {
                         isProductInWishlist={isProductInWishlist}
                       />
                     }
-                  /> */}
+                  />
                   <Route path="/:orderid/checkout" element={<Checkout getItemsInCart={getItemsInCart} placeOrder={placeOrder} isVip={isVip} user={user} />} />
                   {isAdmin && (
                     <>
@@ -367,7 +350,7 @@ const Home = ({ user, logout, setUser }) => {
         </Box>
       </Box>
       <AppFooter />
-    </ThemeProvider >
+    </Box >
   );
 }
 

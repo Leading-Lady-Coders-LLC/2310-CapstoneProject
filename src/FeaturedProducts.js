@@ -32,16 +32,16 @@ const FeaturedProducts = () => {
             zIndex: 4,
             height: "20rem"
           }}>
-          <Typography sx={{ fontSize: "5vw", fontWeight: 900, mb: "-.3em" }}>
+          <Typography variant='h2' sx={{ fontSize: "6vw", fontWeight: 900, mb: "-.3em" }}>
             VALENTINE'S
           </Typography>
-          <Typography sx={{ fontSize: "5vw", fontWeight: 900, mt: "-.3em" }}>
+          <Typography variant='h2' sx={{ fontSize: "6vw", fontWeight: 900, mb: "-.3em" }}>
             DAY
           </Typography>
-          <Typography sx={{ fontSize: "2vw", fontWeight: 700, mb: "-.2em" }}>
+          <Typography variant='body1' sx={{ fontSize: "2.5vw", fontWeight: 700, mb: "-.2em" }}>
             is just around the corner
           </Typography>
-          <Typography sx={{ fontSize: "3vw", fontWeight: 700, mt: "-.2em" }}>
+          <Typography variant='body1' sx={{ fontSize: "3.5vw", fontWeight: 700, mt: "-.2em" }}>
             ORDER YOUR CAKE TODAY!
           </Typography>
         </Box>

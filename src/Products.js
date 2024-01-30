@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SearchBar from './SearchBar';
 import { displayPrice } from './Util';
-import { Card, CardActions, CardContent, CardMedia, Container, Fab, IconButton, Tooltip, Typography } from '@mui/material';
+import { Box, Card, CardActions, CardContent, CardMedia, Container, Fab, Hidden, IconButton, Tooltip, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 
@@ -42,23 +43,27 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
       return (
         <Card key={product.id} sx={{ width: "14rem" }}>
           <CardMedia
-            sx={{ height: "12rem", cursor: 'pointer' }}
+            sx={{ height: "16rem", cursor: 'pointer' }}
             image={product.product_image ?? `https://source.unsplash.com/random/?${product.name}[${index}]`}
             title={"Click to view details"}
             onClick={() => { navigate(`/products/${product.id}`) }}
+            loading='lazy'
           />
           <CardContent>
-            <Typography gutterBottom variant="caption" component="span">
+            <Typography gutterBottom variant="body1" component="span" sx={{ fontWeight: 700, color: 'rgba(40,40,42, .85)' }}>
               {product.name}
             </Typography>
-            <Typography variant="body1" color="text.secondary">
+            <Typography 
+              variant="body2" 
+              noWrap
+            >
               {product.description}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2">
               {displayPrice.format(product.price)}
             </Typography>
             <Typography variant="caption" className="vipDiscount">
-              {product.vip_price > 0 ? `${displayPrice.format(product.vip_price)}  **VIP only discount!**` : ""}
+              {product.vip_price > 0 ? `${displayPrice.format(product.vip_price)}  **VIP only discount!**` : <br /> }
             </Typography>
           </CardContent>
 
@@ -68,11 +73,11 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
                 {
                   isProductInWishlist(product) ?
                     <Tooltip title="I changed my mind! Remove from Wishlist.">
-                      <IconButton size="small" sx={{ color: 'red' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { deleteWishlistItem(product) }}><FavoriteRoundedIcon /></IconButton>
                     </Tooltip>
                     :
                     <Tooltip title="I want this cake someday! Add to Wishlist.">
-                      <IconButton size="small" onClick={() => { createWishlistItem(product) }}><FavoriteIcon /></IconButton>
+                      <IconButton size="small" sx={{ color: 'accentPink.dark' }} onClick={() => { createWishlistItem(product) }}><FavoriteBorderRoundedIcon /></IconButton>
                     </Tooltip>
                 }
 
@@ -112,8 +117,10 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
   }
 
   return (
-    <div>     
-      <h2>{productCategory??"All Products"}</h2>
+    <Box>     
+      <Typography variant='h4'>
+        {productCategory??"All Products"}
+      </Typography>
       {/* key renders new searchbar everytime the product category changes */}
       <SearchBar key={`searchbar-for-${productCategory}`} searchList={products} onSearch={(results) => { setSearchResults(results) }} />
       {
@@ -123,7 +130,8 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
               <AddIcon />
             </Fab>
           </Tooltip>
-        )}
+        )
+      }
       <Container sx={{ display: 'flex', gap: '1rem', flexWrap: "wrap" }} maxWidth="xl">
         {
           // display order details by default. If the searchResults are available, then display only search results
@@ -131,7 +139,7 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, isLogge
             : showProducts(productCategory)
         }
       </Container>
-    </div>
+    </Box>
   );
 };
 
