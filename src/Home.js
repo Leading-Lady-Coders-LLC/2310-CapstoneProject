@@ -21,6 +21,8 @@ import Orders from './Orders';
 import ThankYou from './ThankYou';
 import Checkout from './Checkout';
 import UserProfileMUI from './UserProfileMUI';
+import AboutMe from './AboutMe';
+import Contact from './Contact';
 
 const Home = ({ user, logout, setUser }) => {
   const isLoggedIn = !!user?.id;
@@ -219,6 +221,7 @@ const Home = ({ user, logout, setUser }) => {
                   <FrequentlyBought products={products} />
                 </>
               }></Route>
+             <Route path="/aboutme" element={<AboutMe/>}/>
               {/* display products and product details for all users */}
               <Route
                 path="/products"
@@ -323,6 +326,8 @@ const Home = ({ user, logout, setUser }) => {
                     }
                   />
                   <Route path="/:orderid/checkout" element={<Checkout getItemsInCart={getItemsInCart} placeOrder={placeOrder} isVip={isVip} user={user} />} />
+                  <Route path="/contact" element={<Contact user={user}/>}/>                 
+
                   {isAdmin && (
                     <>
                       <Route path='/orders-admin' element={<Orders orders={allOrders}
@@ -339,8 +344,11 @@ const Home = ({ user, logout, setUser }) => {
                       />} />
                       <Route path="/add-product" element={<AddOrEditAProduct products={products} setProducts={setProducts} />} />
                       <Route path="/customers" element={<AllCustomers customers={customers} setCustomers={setCustomers} />} />
+                     
+                      
                     </>
                   )}
+
 
                 </>
               }

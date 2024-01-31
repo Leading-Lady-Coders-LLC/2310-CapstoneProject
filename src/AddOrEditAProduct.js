@@ -82,7 +82,10 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    // make a check if it is add product or edit product and then throw errow message or accordingly
+    
+    if (!product && !productImage ) {throw new Error("Please Upload and Image")}
+  
     const editedProduct = {
       productId: id,
       name,
@@ -92,7 +95,7 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
       category,
       productImage,
     }
-
+ 
     const updateProducts = async (editedProduct, setProducts) => {
       await api.updateProduct(editedProduct, setProducts);
     }
@@ -117,7 +120,7 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
           alignItems: 'center',
         }}
       >
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={9}>
               <TextField
@@ -127,6 +130,8 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
                 fullWidth
                 id="name"
                 label="Name of Cake"
+                inputProps={{ minLength:5, maxLength: 25 }}
+                helperText="Please enter atleast 5 characters with 25 as max."
                 value={name}
                 autoFocus
                 onChange={(e) => { setName(e.target.value) }}
@@ -139,10 +144,12 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
                 id="price"
                 label="Price"
                 name="price"
+                helperText= "Numbers are required."
+                inputProps={{pattern:'^[0-9]{1,10}(?:.[0-9]{2})?$', }}
                 InputProps={{
                   startAdornment: <InputAdornment position="start">$</InputAdornment>,
                 }}
-                onChange={(e) => { setPrice(e.target.value) }}
+                onChange={(e) => { setPrice(e.target.value)}}
                 value={price}
               />
             </Grid>
@@ -162,6 +169,7 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
                 id="vip_price"
                 label="VIP Price"
                 name="vip_price"
+                inputProps={{pattern:'^[0-9]{1,10}(?:.[0-9]{2})?$', }}
                 InputProps={{
                   startAdornment: <InputAdornment position="start">$</InputAdornment>,
                 }}
@@ -177,6 +185,8 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
                 fullWidth
                 id="description"
                 label="Description of Cake"
+                inputProps={{ minLength:5, maxLength: 200,}}
+                helperText="Please enter atleast 5 characters."
                 name="description"
                 multiline
                 rows={4}
@@ -203,15 +213,20 @@ const AddOrEditAProduct = ({ products, setProducts }) => {
               </TextField>
             </Grid>
             <Grid item xs={12}>
-              <label >Product image : <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-                Upload file
-                <input type="file" hidden ref={el} />
+              <label >
+                Product image : <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                Upload Image
+                <input type="file" hidden ref={el}/>
               </Button>
+             
               </label>
               {
                 showAlert &&
-                <Alert severity="success">The selected file is loaded.</Alert>
-              }
+                <Alert severity="success">The selected file is loaded.</Alert> 
+              } 
+              {/* use terinary to only throw messae if image hasn't been uploaded */}
+              {  !product && !productImage && 
+                <Alert severity="warning">Image Upload Required</Alert> }
             </Grid>
           </Grid>
           <Button

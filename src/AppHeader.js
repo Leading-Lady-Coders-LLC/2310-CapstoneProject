@@ -6,9 +6,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import InfoIcon from '@mui/icons-material/Info';;
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import { useNavigate } from 'react-router-dom';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
-const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
+
+
+const AppHeader = ({ isLoggedIn, logout ,cartCount,}) => {
   const navigate = useNavigate();
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, height: "8rem" }}>
@@ -59,9 +63,36 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
           </Badge>  
         </IconButton>
       </Tooltip>
-          </>
+         
+{/* display Contact */}
+          <Tooltip title={"ContactMe"}>
+              <IconButton
+                color="inherit"
+                aria-label={"Contact Me"}
+                onClick={() => navigate("/contact")}
+              >
+                <ContactPhoneIcon />
+              </IconButton>
+            </Tooltip>
+
+ </>
         )}
-        <Tooltip title={isLoggedIn ? "Logout" : "Login"}>
+     
+
+          
+
+        {/* display About Me */}
+         <Tooltip title={"AboutMe"}>
+              <IconButton
+                color="inherit"
+                aria-label={"About Me"}
+                onClick={() => navigate("/aboutme")}
+              >
+                <InfoRoundedIcon />
+              </IconButton>
+            </Tooltip>
+
+   <Tooltip title={isLoggedIn ? "Logout" : "Login"}>
           <IconButton
             color="inherit"
             aria-label={isLoggedIn ? "Logout" : "Login"}
@@ -74,6 +105,7 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount}) => {
       <IconButton color="inherit">
         <InfoIcon fontSize='large' />
       </IconButton>
+
     </Toolbar>
         </AppBar >
   )
