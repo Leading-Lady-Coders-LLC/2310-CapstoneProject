@@ -8,7 +8,7 @@ const findUserByToken = async (token) => {
   try {
     const payload = await jwt.verify(token, process.env.JWT);
     const SQL = `
-      SELECT id, firstname, lastname, username, is_admin, is_vip, address_line1, address_line2, city, state, zip_code
+      SELECT id, firstname, lastname, username, is_admin, is_vip, address_line1, address_line2, city, state, zip_code, phone
       FROM users
       WHERE id = $1
     `;
@@ -71,11 +71,12 @@ const updateAddress = async(user)=> {
     address_line2 = $2, 
     city = $3, 
     state = $4, 
-    zip_code = $5
-    WHERE id = $6 
+    zip_code = $5,
+    phone = $6
+    WHERE id = $7 
     RETURNING *
   `;
-  const response = await client.query(SQL, [ user.address_line1, user.address_line2, user.city, user.state, user.zip_code, user.user_id ]);
+  const response = await client.query(SQL, [ user.address_line1, user.address_line2, user.city, user.state, user.zip_code, user.phone, user.user_id ]);
   return response.rows[0];
 };
 

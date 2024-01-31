@@ -64,7 +64,7 @@ const AllCustomers = ({ customers, setCustomers }) => {
                     <TableCell align="center">{customer.username}</TableCell>
                     <TableCell align="center">{customer.firstname}</TableCell>
                     <TableCell align="center">{customer.lastname}</TableCell>
-                    <TableCell align="center">{customer.is_admin && <StarBorderPurple500Icon sx={{ color: 'red' }} />}</TableCell>
+                    <TableCell align="center">{customer.is_admin && <StarBorderPurple500Icon sx={{ color: 'accentPurple.main' }} />}</TableCell>
                     <TableCell align="center"> <Switch checked={customer.is_vip} onChange={() => toggleVipStatus(customer)} /> </TableCell>
                   </TableRow>
                 )

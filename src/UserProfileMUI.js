@@ -33,7 +33,7 @@ const UserProfileMUI = ({
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          sx={{backgroundColor: '#ffc107'}}
+          sx={{backgroundColor: 'primary.light'}}
           elevation={5} 
         >
             <Box>
@@ -54,7 +54,7 @@ const UserProfileMUI = ({
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2-content"
           id="panel2-header"
-          sx={{backgroundColor: '#ffc107'}}
+          sx={{backgroundColor: 'primary.light'}}
           elevation={5} 
         >
             <Box>
@@ -80,7 +80,7 @@ const UserProfileMUI = ({
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3-content"
           id="panel3-header"
-          sx={{ backgroundColor: '#ffc107'}}
+          sx={{ backgroundColor: 'primary.light'}}
           elevation={5} 
         >
             <Box>

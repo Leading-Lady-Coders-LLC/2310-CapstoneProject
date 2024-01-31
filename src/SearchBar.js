@@ -10,8 +10,12 @@ const SearchBar = ({ searchList, onSearch }) => {
     setSearchText(searchString);
 
     const filteredProducts = searchList?.filter((product) => {
-      return product.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1
+      const productName = product.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1
+      const productDescription = product.description.toLowerCase().indexOf(searchString.toLowerCase()) !== -1
+      return productName || productDescription
     })
+
+    console.log(filteredProducts)
 
     //if onSearch fn is passed from calling component, call onSearch() with filtered products as args
     //this returns the filtered products to the calling component
@@ -22,7 +26,7 @@ const SearchBar = ({ searchList, onSearch }) => {
   }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+    <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 2 }}>
       <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
       <TextField label="Search cake name here" variant="standard" sx={{width:'25rem'}}  value={searchText} onChange={handleSearch}></TextField>
     </Box>
