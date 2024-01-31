@@ -36,7 +36,7 @@ const Contact = ({user}) => {
     // CRequest ? updateCakeRequest(editCRequest, setCRequest) : createCakeRequest(newRequest, setnewRequest);
 
 
-    // navigate('/thankyou')
+      navigate("/thankyou?sentFrom=Contact");
   }
 
 
@@ -56,7 +56,7 @@ const Contact = ({user}) => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          sx={{backgroundColor: '#ffc107'}}
+          sx={{backgroundColor: 'primary.light'}}
           elevation={5} 
         >
             <Box>

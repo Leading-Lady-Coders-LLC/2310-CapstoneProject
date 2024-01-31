@@ -2,9 +2,7 @@ import { AppBar, Badge, Box, Button, IconButton, Toolbar, Tooltip, Typography } 
 import React from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
-import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import InfoIcon from '@mui/icons-material/Info';;
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import { useNavigate } from 'react-router-dom';
@@ -71,7 +69,7 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount,}) => {
                 aria-label={"Contact Me"}
                 onClick={() => navigate("/contact")}
               >
-                <ContactPhoneIcon />
+                <ContactPhoneIcon fontSize='large' />
               </IconButton>
             </Tooltip>
 
@@ -88,11 +86,11 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount,}) => {
                 aria-label={"About Me"}
                 onClick={() => navigate("/aboutme")}
               >
-                <InfoRoundedIcon />
+                <InfoRoundedIcon fontSize='large' />
               </IconButton>
             </Tooltip>
 
-   <Tooltip title={isLoggedIn ? "Logout" : "Login"}>
+        <Tooltip title={isLoggedIn ? "Logout" : "Login"}>
           <IconButton
             color="inherit"
             aria-label={isLoggedIn ? "Logout" : "Login"}
@@ -102,12 +100,8 @@ const AppHeader = ({ isLoggedIn, logout ,cartCount,}) => {
           </IconButton>
         </Tooltip>  
 
-      <IconButton color="inherit">
-        <InfoIcon fontSize='large' />
-      </IconButton>
-
     </Toolbar>
-        </AppBar >
+    </AppBar >
   )
 }
 

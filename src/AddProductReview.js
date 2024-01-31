@@ -46,6 +46,7 @@ const AddProductReview = ({ products }) => {
       comments,
       ratings,
       product_id: product.id,
+      product_image
     };
 
     const addreview = async (productId) => {
@@ -67,11 +68,11 @@ const AddProductReview = ({ products }) => {
         <Card sx={{ display: 'flex' }}>
           <CardMedia
             sx={{ p: "1rem", width: "200px", height: "200px" }}
-            image={`https://source.unsplash.com/random/?${product?.name}`}
+            image={product.product_image ?? `https://source.unsplash.com/random/?${product.name}`}
             component="img"
           />
           <CardContent sx={{ display: "flex", flexDirection: "column", flexGrow: "1" }}>
-            <Typography gutterBottom variant="caption" component="span">
+            <Typography gutterBottom variant="h5" component="span">
               {product?.name}
             </Typography>
             <Typography variant="body1" color="text.secondary">

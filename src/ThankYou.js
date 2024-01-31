@@ -20,6 +20,13 @@ const ThankYou = ()=>{
             request: `Review other purchases? `,
             sendTo: '/#/orders',
             location: 'Go to orders.'
+        },
+        {
+            name: 'Contact',
+            reason: 'for your request',
+            request: `The bakery will contact you shortly. `,
+            sendTo: '/#/products',
+            location: 'Continue shopping'
         }
     ]
 
