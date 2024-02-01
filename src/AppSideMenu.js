@@ -17,8 +17,8 @@ const AppSideMenu = ({ isAdmin }) => {
   return (
     <Drawer sx={{ width: "15rem", "& .MuiDrawer-paper": { backgroundColor: "secondary.light" } }} variant="permanent" open>
       <List component="nav" sx={{ paddingTop: '9rem', width: "15rem" }}>
-        <Typography variant='h6' sx={{ pl: '1em' }}>Occassions</Typography>
-        {["Birthdays", "Holidays", "Cupcakes", "Special Occassions", "All Cakes"].map((category) => {
+        <Typography variant='h6' sx={{ pl: '1em' }}>Occasions</Typography>
+        {["Birthdays", "Holidays", "Cupcakes", "Special Occasions", "All Cakes"].map((category) => {
           return (
             <React.Fragment key={`key-for-${category}`}>
               <ListItemButton onClick={()=>navigate(`/products?category=${category}`)} selected={category===productCategory}>

@@ -73,7 +73,7 @@ const SignIn = ({ login }) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -83,6 +83,7 @@ const SignIn = ({ login }) => {
               name="username"
               autoComplete="email"
               autoFocus
+              inputProps={{ minLength: 3, maxLength: 25 }}
             />
             <TextField
               margin="normal"
@@ -93,6 +94,7 @@ const SignIn = ({ login }) => {
               type="password"
               id="password"
               autoComplete="current-password"
+              inputProps={{ minLength: 3, maxLength: 25 }}
             />
             { error && <Box variant='h3' sx={{color: 'red'}}>{error}</Box>}
             {/* <FormControlLabel
